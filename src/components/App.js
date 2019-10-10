@@ -1,12 +1,5 @@
 import React from "react";
-import Header from "./Header";
-import MedicationName from "./MedicationName";
-import MedicationColorSelector from "./MedicationColorSelector";
-import MedicationQuantitySelector from "./MedicationQuantitySelector";
-import MedicationInstruction from "./MedicationInstruction";
-import MedicationStartTiming from "./MedicationStartTiming";
-// import PreviewExample from "./PreviewExample";
-import ExampleGuideline from "./ExampleGuideline";
+// import Main from "./Main";
 import Footer from "./Footer";
 import "../stylesheets/App.scss"
 
@@ -14,101 +7,98 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dayHours: [],
-      dayHoursMedication: [],
-      medicationName: "",
-      firstDose: '',
-      medicationInstruction: '',
-      colorSelected: ""
+      flareTreatment: []
     }
-    this.getDays = this.getDays.bind(this);
-    this.getHoursMedication = this.getHoursMedication.bind(this);
-    this.getInfoState = this.getInfoState.bind(this);
-
+    this.getFlareTreatmentInfo = this.getFlareTreatmentInfo.bind(this);
+    this.includeObjectToData = this.includeObjectToData.bind(this);
+    this.renderMonthName = this.renderMonthName.bind(this);
   }
   componentDidMount() {
-    this.getDays();
+    this.getFlareTreatmentInfo();
+
   }
 
-  getDays() {
-    let dayHoursList = [];
-    for (let hour = 1; hour < 24; hour++) {
-      dayHoursList.push(hour);
-    }
-    return this.setState({
-      dayHours: dayHoursList
-    })
-  }
-  getHoursMedication() {
+  getFlareTreatmentInfo() {
 
-    if (this.state.firstDose !== "" && this.state.medicationInstruction !== "") {
-      console.log('sí tengo datos')
-
-      const firstDose = parseInt(this.state.firstDose);
-      const medicationInstruction = parseInt(this.state.medicationInstruction);
-      const doses = 24 / medicationInstruction;
-
-      let numberOfDoses = [];
-
-      for (let dose = 0; dose < doses; dose++) {
-        numberOfDoses.push(dose)
-      }
-
-      let hoursNeed = firstDose;
-      let listTimes = []
-
-      numberOfDoses.forEach((user) => {
-        if (user === 0) {
-          listTimes.push(hoursNeed)
-
-        } else {
-          const time = hoursNeed += medicationInstruction
-          if (time > 24) {
-            const goodTime = time - 24;
-            listTimes.push(goodTime)
-
-          } else {
-            listTimes.push(time)
-
-          }
-        }
+    fetch("./services/info.json")
+      .then(response => response.json())
+      .then(data => {
+        this.includeObjectToData(data);
       })
-
-      return listTimes
-    }
   }
 
-  getInfoState(event, infoState) {
-    this.setState({
-      [infoState]: event.currentTarget.value
+  includeObjectToData(data) {
+
+    data[0].treatment.push(
+      {
+        "date": "2019-06-16",
+        "treatment": [
+          {
+            "time": "04:00",
+            "pill": "paracetamol"
+          },
+          {
+            "time": "10:45",
+            "pill": "ibuprofeno"
+          }, {
+            "time": "18:45",
+            "pill": "ibuprofeno"
+          }
+        ]
+      }
+    )
+    const monthOrdered = data.sort((a, b) => {
+      return new Date(b.name) - new Date(a.name)
+    });
+    const treatmentOrdered = data.map(month => {
+      return month.treatment.map(item => {
+        const medicationList = item.treatment
+        return medicationList.sort((a, b) => { return new Date(b.time) - new Date(a.time) })
+      })
     })
+    const dataOrdered = data.map(month => {
+      return month.treatment.sort((a, b) => { return new Date(b.date) - new Date(a.date) })
+    })
+
+    return this.setState({
+      flareTreatment: dataOrdered
+    })
+  }
+  renderMonthName() {
+    return this.state.flareTreatment.map(month => {
+      const list = month.map(day => {
+
+        const dayList = day.treatment.map((dose, index) => {
+          return (
+            <div className="medication_dose--container">
+              <h4 key={index}>{dose.time} </h4>
+              <p>{dose.pill}</p>
+            </div>
+          )
+        })
+        return <div className="medication_dose--day">
+          ----- {day.date}-----
+          {dayList}
+        </div>
+      })
+      return list
+    })
+
   }
 
 
   render() {
-    const timesMedication = this.getHoursMedication()
+    console.log(this.state.flareTreatment)
     return (
-      <div>
-        <div className="medicationCard">
-          <Header />
-          <MedicationName getInfoState={this.getInfoState} />
-          <MedicationColorSelector getInfoState={this.getInfoState} />
-          <MedicationQuantitySelector />
-          <MedicationInstruction getInfoState={this.getInfoState} />
-          <MedicationStartTiming getInfoState={this.getInfoState} />
-          {/* <PreviewExample
-          color={this.state.colorSelected}
-          dayHours={this.state.dayHours}
-          medicationName={this.state.medicationName}
-          firstDose={this.state.firstDose} /> */}
-          <ExampleGuideline
-            info={timesMedication}
-            color={this.state.colorSelected}
-            medicationName={this.state.medicationName}
-          />
-        </div>
-        <Footer />
-      </div>
+      <div className="main">
+        <h1 className="main_title">Treatment</h1>
+        <img src="../images/pills.png" alt="pill" className="pill_image"></img>
+
+        {this.renderMonthName()}
+
+        {/* <Main name={this.renderMonthName} /> */}
+        < Footer />
+      </div >
     );
   }
 }
