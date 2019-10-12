@@ -103,7 +103,7 @@ class App extends React.Component {
           < Header />
           <Route
             exact
-            path="/"
+            path="/My-Health-Log/"
             render={() => {
               return <HomePage />;
             }}
@@ -114,14 +114,14 @@ class App extends React.Component {
 
             <Route
               exact
-              path="/treatment"
+              path="/My-Health-Log/treatment"
               render={() => {
                 return <TreatmentPage renderMonthName={this.renderMonthName()} titlePage="Treatment" classImage="pill_image" image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
               }}
             />
             <Route
               exact
-              path="/appointments"
+              path="/My-Health-Log/appointments"
               render={() => {
                 return <Appointments titlePage="Appointments" classImage="pill_image" image="https://laurapareja.github.io/My-Health-Log/images/doctorDates.png" />;
               }}
@@ -129,10 +129,10 @@ class App extends React.Component {
           </Switch>
           < Footer />
           <div className="navigator">
-            <Link className="navigator_link" to="/"><i class="fas fa-home icon"></i>
+            <Link className="navigator_link" to="/My-Health-Log/"><i class="fas fa-home icon"></i>
               Home</Link>
-            <Link className="navigator_link" to="/treatment"><i class="fas fa-pills icon"></i>Treatment</Link>
-            <Link className="navigator_link" to="/appointments"><i class="fas fa-calendar-check icon"></i>Appointments</Link>
+            <Link className="navigator_link" to="/My-Health-Log/treatment"><i class="fas fa-pills icon"></i>Treatment</Link>
+            <Link className="navigator_link" to="/My-Health-Log/appointments"><i class="fas fa-calendar-check icon"></i>Appointments</Link>
           </div>
 
         </BrowserRouter>
