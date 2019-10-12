@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom'; import TreatmentPage from "./TreatmentPage";
-import Header from "./Header";
+// import Header from "./Header";
 import HomePage from './HomePage';
 import Appointments from './Appointments'
 import Footer from "./Footer";
@@ -25,7 +25,7 @@ class App extends React.Component {
 
   getFlareTreatmentInfo() {
 
-    fetch("./services/info.json")
+    fetch("https://laurapareja.github.io/My-Health-Log/services/info.json")
       .then(response => response.json())
       .then(data => {
         this.includeObjectToData(data);
@@ -98,9 +98,9 @@ class App extends React.Component {
 
 
     return (
-      <div>
+      <div className="body">
         <BrowserRouter>
-          < Header />
+          {/* < Header /> */}
           <Route
             exact
             path="/My-Health-Log/"
@@ -108,10 +108,7 @@ class App extends React.Component {
               return <HomePage />;
             }}
           />
-
           <Switch>
-
-
             <Route
               exact
               path="/My-Health-Log/treatment"

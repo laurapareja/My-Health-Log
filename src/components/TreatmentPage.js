@@ -8,7 +8,7 @@ const TreatmentPage = (props) => {
         <div className="main">
             <h2 className="main_title">{titlePage}</h2>
             <img src={image} alt="pill" className={classImage}></img>
-            {renderMonthName}
+            <div>{renderMonthName}</div>
         </div >
     )
 }
