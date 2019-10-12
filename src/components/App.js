@@ -101,16 +101,17 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           < Header />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <HomePage />;
+            }}
+          />
 
           <Switch>
 
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return <HomePage />;
-              }}
-            />
+
             <Route
               exact
               path="/treatment"
