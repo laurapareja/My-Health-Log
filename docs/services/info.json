@@ -1,0 +1,37 @@
+[
+    {
+        "name": "2019-06",
+        "treatment": [
+            {
+                "date": "2019-06-14",
+                "treatment": [
+                    {
+                        "time": "11:00",
+                        "pill": "paracetamol"
+                    },
+                    {
+                        "time": "19:00",
+                        "pill": "paracetamol"
+                    }
+                ]
+            },
+            {
+                "date": "2019-06-15",
+                "treatment": [
+                    {
+                        "time": "04:00",
+                        "pill": "paracetamol"
+                    },
+                    {
+                        "time": "10:45",
+                        "pill": "ibuprofeno"
+                    },
+                    {
+                        "time": "18:45",
+                        "pill": "ibuprofeno"
+                    }
+                ]
+            }
+        ]
+    }
+]

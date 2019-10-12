@@ -1,13 +1,18 @@
 import React from "react";
-// import Main from "./Main";
+import { BrowserRouter, Switch, Route } from 'react-router-dom'; import TreatmentPage from "./TreatmentPage";
+import Header from "./Header";
+import HomePage from './HomePage';
+import Appointments from './Appointments'
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
+
 import "../stylesheets/App.scss"
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      flareTreatment: []
+      flareTreatment: [],
     }
     this.getFlareTreatmentInfo = this.getFlareTreatmentInfo.bind(this);
     this.includeObjectToData = this.includeObjectToData.bind(this);
@@ -28,7 +33,6 @@ class App extends React.Component {
   }
 
   includeObjectToData(data) {
-
     data[0].treatment.push(
       {
         "date": "2019-06-16",
@@ -56,14 +60,16 @@ class App extends React.Component {
         return medicationList.sort((a, b) => { return new Date(b.time) - new Date(a.time) })
       })
     })
-    const dataOrdered = data.map(month => {
+    const propertiesOrdered = data.map(month => {
       return month.treatment.sort((a, b) => { return new Date(b.date) - new Date(a.date) })
     })
 
     return this.setState({
-      flareTreatment: dataOrdered
+      flareTreatment: propertiesOrdered,
     })
   }
+
+
   renderMonthName() {
     return this.state.flareTreatment.map(month => {
       const list = month.map(day => {
@@ -89,16 +95,48 @@ class App extends React.Component {
 
   render() {
     console.log(this.state.flareTreatment)
+
+
     return (
-      <div className="main">
-        <h1 className="main_title">Treatment</h1>
-        <img src="../images/pills.png" alt="pill" className="pill_image"></img>
+      <div>
+        <BrowserRouter>
+          < Header />
 
-        {this.renderMonthName()}
+          <Switch>
 
-        {/* <Main name={this.renderMonthName} /> */}
-        < Footer />
-      </div >
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return <HomePage />;
+              }}
+            />
+            <Route
+              exact
+              path="/treatment"
+              render={() => {
+                return <TreatmentPage renderMonthName={this.renderMonthName()} titlePage="Treatment" classImage="pill_image" image="../images/pills.png" />;
+              }}
+            />
+            <Route
+              exact
+              path="/appointments"
+              render={() => {
+                return <Appointments titlePage="Appointments" classImage="pill_image" image="../images/doctorDates.png" />;
+              }}
+            />
+          </Switch>
+          < Footer />
+          <div className="navigator">
+            <Link className="navigator_link" to="/"><i class="fas fa-home icon"></i>
+              Home</Link>
+            <Link className="navigator_link" to="/treatment"><i class="fas fa-pills icon"></i>Treatment</Link>
+            <Link className="navigator_link" to="/appointments"><i class="fas fa-calendar-check icon"></i>Appointments</Link>
+          </div>
+
+        </BrowserRouter>
+
+      </div>
     );
   }
 }
