@@ -115,14 +115,14 @@ class App extends React.Component {
               exact
               path="/treatment"
               render={() => {
-                return <TreatmentPage renderMonthName={this.renderMonthName()} titlePage="Treatment" classImage="pill_image" image="../images/pills.png" />;
+                return <TreatmentPage renderMonthName={this.renderMonthName()} titlePage="Treatment" classImage="pill_image" image="./images/pills.png" />;
               }}
             />
             <Route
               exact
               path="/appointments"
               render={() => {
-                return <Appointments titlePage="Appointments" classImage="pill_image" image="../images/doctorDates.png" />;
+                return <Appointments titlePage="Appointments" classImage="pill_image" image="./images/doctorDates.png" />;
               }}
             />
           </Switch>
