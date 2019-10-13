@@ -14,7 +14,6 @@ const Appointments = (props) => {
                 <li>Tuesday 22 October</li>
                 <li>Wednesday 23 October</li>
                 <li>Thursday 24 October</li>
-
             </ul>
         </div >
     )

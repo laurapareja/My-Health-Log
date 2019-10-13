@@ -1,6 +1,7 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from 'react-router-dom'; import TreatmentPage from "./TreatmentPage";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage';
+import TreatmentPage from "./TreatmentPage";
 import Appointments from './Appointments';
 import MedicationCalculator from './MedicationCalculator/MedicationCalculator';
 import Navigator from './Navigator';
@@ -22,7 +23,9 @@ class App extends React.Component {
   }
 
   getFlareTreatmentInfo() {
-    fetch("https://laurapareja.github.io/My-Health-Log/services/infoUpdated.json")
+    fetch("https://laurapareja.github.io/My-Health-Log/services/info.json")
+      // fetch("http://localhost:3000/services/info.json")
+
       .then(response => response.json())
       .then(data => {
         this.includeDayTreatmentToData(data);
@@ -44,7 +47,7 @@ class App extends React.Component {
             "pill": "ibuprofeno"
           }, {
             "time": "18:45",
-            "pill": "ibuprofeno"
+            "pill": "paracetamol"
           }
         ]
       }
@@ -85,7 +88,7 @@ class App extends React.Component {
                 return <TreatmentPage
                   flareTreatment={this.state.flareTreatment}
                   titlePage="Treatment"
-                  classImage="pill_image"
+                  classImage="page_image"
                   image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
               }}
             />
@@ -95,7 +98,7 @@ class App extends React.Component {
               render={() => {
                 return <Appointments
                   titlePage="Appointments"
-                  classImage="pill_image"
+                  classImage="page_image"
                   image="https://laurapareja.github.io/My-Health-Log/images/doctorDates.png" />;
               }}
             />

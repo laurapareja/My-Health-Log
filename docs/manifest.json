@@ -1,6 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  // "short_name": "React App",
+  // "name": "Create React App Sample",
+  "short_name": "MyHealthLog App",
+  "name": "My Health Log App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -16,7 +18,7 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
-    }	    
+    }
   ],
   "start_url": ".",
   "display": "standalone",
