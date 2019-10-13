@@ -3,33 +3,29 @@ import React from 'react';
 
 
 const MedicationStartTiming = (props) => {
-
+    const firstDose = props.firstDose;
 
     const handleChange = (event) => {
         const firstDose = 'firstDose';
         props.getInfoState(event, firstDose)
     }
 
+    const hours = []
+    for (let i = 0; i <= 24; i++) {
+        hours.push(i)
+    }
+
     return (
         <div className="inputContainer" >
             <label className="inputContent" htmlFor="startTiming">First Dose</label>
-            <select name="startTiming" id="startTiming" onChange={handleChange}>
-                <option value="hora"></option>
-                <option value="8">08:00</option>
-                <option value="9">09:00</option>
-                <option value="10">10:00</option>
-                <option value="11">11:00</option>
-                <option value="12">12:00</option>
-                <option value="13">13:00</option>
-                <option value="14">14:00</option>
-                <option value="15">15:00</option>
-                <option value="16">16:00</option>
-                <option value="17">17:00</option>
-                <option value="18">18:00</option>
-                <option value="19">19:00</option>
-                <option value="20">20:00</option>
-                <option value="21">21:00</option>
-                <option value="22">22:00</option>
+            <select name="startTiming" id="startTiming" onChange={handleChange} value={firstDose}>
+                {hours.map((hour, index) => {
+                    let hourWithPad = `${hour}`
+                    if (hour < 10) {
+                        hourWithPad = `0${hour}`
+                    }
+                    return (<option key={index} value={hour}>{hourWithPad}:00</option>)
+                })}
             </select>
         </div>
     )

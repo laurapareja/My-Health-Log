@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import TreatmentPage from "./TreatmentPage";
 import TreatmentPageList from "./TreatmentPageList";
-import Appointments from './Appointments';
+import AppointmentPage from './AppointmentPage';
+import AppointmentsList from "./AppointmentsList";
 import MedicationCalculator from './MedicationCalculator/MedicationCalculator';
 import Navigator from './Navigator';
 
@@ -12,15 +13,35 @@ import "../stylesheets/App.scss"
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      flareTreatment: [],
-    }
+    const localStorageData = this.getData();
+    this.state = localStorageData === null
+      ? this._getInitialState()
+      : localStorageData;
+
+    this.saveData = this.saveData.bind(this);
     this.getFlareTreatmentInfo = this.getFlareTreatmentInfo.bind(this);
     this.includeDayTreatmentToData = this.includeDayTreatmentToData.bind(this);
     this.includeDataOrderedToState = this.includeDataOrderedToState.bind(this);
+    this.actionColorSelector = this.actionColorSelector.bind(this);
   }
   componentDidMount() {
     this.getFlareTreatmentInfo();
+    this.saveData();
+  }
+  //obtengo los datos del localstorage
+  getData() {
+    return JSON.parse(localStorage.getItem("infoMyHealth"));
+  }
+  //guardo los datos en el localstorage
+  saveData() {
+    localStorage.setItem("infoMyHealth", JSON.stringify(this.state));
+  }
+  _getInitialState() {
+    return {
+      flareTreatment: [],
+      colorSelected: '',
+      medicationName: ''
+    }
   }
 
   getFlareTreatmentInfo() {
@@ -66,7 +87,25 @@ class App extends React.Component {
 
     return this.setState({
       flareTreatment: propertiesOrdered,
-    })
+    },
+      //guardo en localstorage
+      this.saveData
+    )
+  }
+  actionColorSelector(color, namePill) {
+    if (this.state.colorSelected !== color) {
+      this.setState({
+        colorSelected: color,
+      }, this.saveData
+      )
+    }
+    const pill = namePill.toLowerCase()
+    if (this.state.medicationName !== pill) {
+      this.setState({
+        medicationName: pill,
+      }, this.saveData
+      )
+    }
   }
 
   render() {
@@ -99,6 +138,8 @@ class App extends React.Component {
                   flareTreatment={this.state.flareTreatment}
                   titlePage="Treatment"
                   classImage="page_image"
+                  colorSelected={this.state.colorSelected}
+                  medicationName={this.state.medicationName}
                   image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
               }}
             />
@@ -107,7 +148,17 @@ class App extends React.Component {
               exact
               path="/My-Health-Log/appointments"
               render={() => {
-                return <Appointments
+                return <AppointmentPage
+                  titlePage="Appointments"
+                  classImage="page_image"
+                  image="https://laurapareja.github.io/My-Health-Log/images/doctorDates.png" />;
+              }}
+            />
+            <Route
+              exact
+              path="/My-Health-Log/appointmentsList"
+              render={() => {
+                return <AppointmentsList
                   titlePage="Appointments"
                   classImage="page_image"
                   image="https://laurapareja.github.io/My-Health-Log/images/doctorDates.png" />;
@@ -117,7 +168,7 @@ class App extends React.Component {
               exact
               path="/My-Health-Log/calculator"
               render={() => {
-                return <MedicationCalculator />;
+                return <MedicationCalculator actionColorSelector={this.actionColorSelector} />;
               }}
             />
           </Switch>

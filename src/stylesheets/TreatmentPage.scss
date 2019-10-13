@@ -23,7 +23,10 @@
   .mainBody{
     width:100vw;
   }
-
+.buttonAppointment{
+  position: relative;;
+  top: 200px;
+}
 .main{
     height: 100%;
     width: 100%;
@@ -62,7 +65,7 @@
     margin-right:10px;
     height: 16px;
     width:7px;
-    border: solid 1px black;
+    // border: solid 1px black;
   }
   .pillName{
     text-transform: capitalize;
