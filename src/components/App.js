@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom'; import TreatmentPage from "./TreatmentPage";
-// import Header from "./Header";
 import HomePage from './HomePage';
-import Appointments from './Appointments'
-import Footer from "./Footer";
-import { Link } from "react-router-dom";
+import Appointments from './Appointments';
+import MedicationCalculator from './MedicationCalculator/MedicationCalculator';
+import Navigator from './Navigator';
 
 import "../stylesheets/App.scss"
 
@@ -15,34 +14,33 @@ class App extends React.Component {
       flareTreatment: [],
     }
     this.getFlareTreatmentInfo = this.getFlareTreatmentInfo.bind(this);
-    this.includeObjectToData = this.includeObjectToData.bind(this);
-    this.renderMonthName = this.renderMonthName.bind(this);
+    this.includeDayTreatmentToData = this.includeDayTreatmentToData.bind(this);
+    this.includeDataOrderedToState = this.includeDataOrderedToState.bind(this);
   }
   componentDidMount() {
     this.getFlareTreatmentInfo();
-
   }
 
   getFlareTreatmentInfo() {
-
-    fetch("https://laurapareja.github.io/My-Health-Log/services/info.json")
+    fetch("https://laurapareja.github.io/My-Health-Log/services/infoUpdated.json")
       .then(response => response.json())
       .then(data => {
-        this.includeObjectToData(data);
+        this.includeDayTreatmentToData(data);
+        this.includeDataOrderedToState(data);
       })
   }
 
-  includeObjectToData(data) {
+  includeDayTreatmentToData(data) {
     data[0].treatment.push(
       {
         "date": "2019-06-16",
         "treatment": [
           {
-            "time": "04:00",
+            "time": "08:00",
             "pill": "paracetamol"
           },
           {
-            "time": "10:45",
+            "time": "12:45",
             "pill": "ibuprofeno"
           }, {
             "time": "18:45",
@@ -51,15 +49,14 @@ class App extends React.Component {
         ]
       }
     )
+    return data;
+  }
+
+  includeDataOrderedToState(data) {
     const monthOrdered = data.sort((a, b) => {
       return new Date(b.name) - new Date(a.name)
     });
-    const treatmentOrdered = data.map(month => {
-      return month.treatment.map(item => {
-        const medicationList = item.treatment
-        return medicationList.sort((a, b) => { return new Date(b.time) - new Date(a.time) })
-      })
-    })
+
     const propertiesOrdered = data.map(month => {
       return month.treatment.sort((a, b) => { return new Date(b.date) - new Date(a.date) })
     })
@@ -69,38 +66,10 @@ class App extends React.Component {
     })
   }
 
-
-  renderMonthName() {
-    return this.state.flareTreatment.map(month => {
-      const list = month.map(day => {
-
-        const dayList = day.treatment.map((dose, index) => {
-          return (
-            <div className="medication_dose--container">
-              <h4 key={index}>{dose.time} </h4>
-              <p>{dose.pill}</p>
-            </div>
-          )
-        })
-        return <div className="medication_dose--day">
-          ----- {day.date}-----
-          {dayList}
-        </div>
-      })
-      return list
-    })
-
-  }
-
-
   render() {
-    console.log(this.state.flareTreatment)
-
-
     return (
       <div className="body">
         <BrowserRouter>
-          {/* < Header /> */}
           <Route
             exact
             path="/My-Health-Log/"
@@ -113,27 +82,33 @@ class App extends React.Component {
               exact
               path="/My-Health-Log/treatment"
               render={() => {
-                return <TreatmentPage renderMonthName={this.renderMonthName()} titlePage="Treatment" classImage="pill_image" image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
+                return <TreatmentPage
+                  flareTreatment={this.state.flareTreatment}
+                  titlePage="Treatment"
+                  classImage="pill_image"
+                  image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
               }}
             />
             <Route
               exact
               path="/My-Health-Log/appointments"
               render={() => {
-                return <Appointments titlePage="Appointments" classImage="pill_image" image="https://laurapareja.github.io/My-Health-Log/images/doctorDates.png" />;
+                return <Appointments
+                  titlePage="Appointments"
+                  classImage="pill_image"
+                  image="https://laurapareja.github.io/My-Health-Log/images/doctorDates.png" />;
+              }}
+            />
+            <Route
+              exact
+              path="/My-Health-Log/calculator"
+              render={() => {
+                return <MedicationCalculator />;
               }}
             />
           </Switch>
-          < Footer />
-          <div className="navigator">
-            <Link className="navigator_link" to="/My-Health-Log/"><i class="fas fa-home icon"></i>
-              Home</Link>
-            <Link className="navigator_link" to="/My-Health-Log/treatment"><i class="fas fa-pills icon"></i>Treatment</Link>
-            <Link className="navigator_link" to="/My-Health-Log/appointments"><i class="fas fa-calendar-check icon"></i>Appointments</Link>
-          </div>
-
+          <Navigator />
         </BrowserRouter>
-
       </div>
     );
   }

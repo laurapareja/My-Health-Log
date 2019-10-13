@@ -2,13 +2,11 @@ import React from "react";
 import Header from "./Header";
 import MedicationName from "./MedicationName";
 import MedicationColorSelector from "./MedicationColorSelector";
-import MedicationQuantitySelector from "./MedicationQuantitySelector";
+// import MedicationQuantitySelector from "./MedicationQuantitySelector";
 import MedicationInstruction from "./MedicationInstruction";
 import MedicationStartTiming from "./MedicationStartTiming";
-// import PreviewExample from "./PreviewExample";
 import ExampleGuideline from "./ExampleGuideline";
-import Footer from "../Footer";
-import "../stylesheets/App.scss"
+import "../../stylesheets/App.scss"
 
 class App extends React.Component {
   constructor(props) {
@@ -42,8 +40,6 @@ class App extends React.Component {
   getHoursMedication() {
 
     if (this.state.firstDose !== "" && this.state.medicationInstruction !== "") {
-      console.log('sí tengo datos')
-
       const firstDose = parseInt(this.state.firstDose);
       const medicationInstruction = parseInt(this.state.medicationInstruction);
       const doses = 24 / medicationInstruction;
@@ -84,30 +80,25 @@ class App extends React.Component {
     })
   }
 
-
   render() {
     const timesMedication = this.getHoursMedication()
     return (
-      <div>
-        <div className="medicationCard">
-          <Header />
+      <div className="mainCalculator">
+        <Header />
+        <div className="mainCalculator_content">
+
           <MedicationName getInfoState={this.getInfoState} />
           <MedicationColorSelector getInfoState={this.getInfoState} />
-          <MedicationQuantitySelector />
-          <MedicationInstruction getInfoState={this.getInfoState} />
+          {/* <MedicationQuantitySelector /> */}
           <MedicationStartTiming getInfoState={this.getInfoState} />
-          {/* <PreviewExample
-          color={this.state.colorSelected}
-          dayHours={this.state.dayHours}
-          medicationName={this.state.medicationName}
-          firstDose={this.state.firstDose} /> */}
+          <MedicationInstruction getInfoState={this.getInfoState} />
+
           <ExampleGuideline
             info={timesMedication}
             color={this.state.colorSelected}
             medicationName={this.state.medicationName}
           />
         </div>
-        <Footer />
       </div>
     );
   }

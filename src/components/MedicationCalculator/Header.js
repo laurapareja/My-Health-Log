@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
     return (
         <header>
-            <h2>Calculadora de tomas</h2>
+            <h2 className="main_title">Doses Calculator</h2>
         </header>
     )
 }

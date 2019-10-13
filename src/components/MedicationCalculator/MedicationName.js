@@ -7,8 +7,8 @@ const MedicationName = (props) => {
     }
     return (
         <main className="medicationName">
-            <label htmlFor="medicationName">Nombre medicación</label>
-            <input type="text" id="medicationName" placeholder="Nombre" onChange={handleChange}></input>
+            <label className="inputContent" htmlFor="medicationName">Medication Name</label>
+            <input type="text" id="medicationName" placeholder="Name" onChange={handleChange}></input>
         </main>
     )
 }

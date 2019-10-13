@@ -6,8 +6,8 @@ const MedicationInstruction = (props) => {
         props.getInfoState(event, medicationInstruction)
     }
     return (
-        <div>
-            <label htmlFor="medicationInstruction">cada</label>
+        <div className="inputContainer">
+            <label htmlFor="medicationInstruction" className="inputContent">each</label>
             <select name="guidelineDose" id="guidelineDose" onChange={handleChange}>
                 <option value="cantidad"></option>
                 <option value="24">24</option>
@@ -16,7 +16,7 @@ const MedicationInstruction = (props) => {
                 <option value="4">4</option>
                 <option value="3">3</option>
             </select>
-            <label htmlFor="medicationInstruction">horas</label>
+            <label htmlFor="medicationInstruction">    hours</label>
         </div>
     )
 }

@@ -11,10 +11,10 @@ const MedicationStartTiming = (props) => {
     }
 
     return (
-        <div>
-            <label htmlFor="startTiming">¿A qué hora quieres empezar?</label>
+        <div className="inputContainer" >
+            <label className="inputContent" htmlFor="startTiming">First Dose</label>
             <select name="startTiming" id="startTiming" onChange={handleChange}>
-                <option value="hora">Hora</option>
+                <option value="hora"></option>
                 <option value="8">08:00</option>
                 <option value="9">09:00</option>
                 <option value="10">10:00</option>
