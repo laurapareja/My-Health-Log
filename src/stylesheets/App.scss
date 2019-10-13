@@ -172,7 +172,6 @@ body{
   width:100%;
   height:600px;
   margin-bottom: 50px;
-  // height: 350px;
 }
 
 .page_image{
@@ -192,37 +191,4 @@ footer {
   text-decoration: none;
   font-weight: lighter;
   color:darkgrey;
-}
-///
-.fade-appear{
-  opacity: 0;
-  z-index: 1
-}
-.fade-appear.fade-appear-active{
-  opacity: 1;
-  transition: opacity 10000ms linear
-}
-
-
-
-.fade-enter {
-  opacity: 0.01;
-  transform: scale(1.1);
-}
-
-.fade-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 300ms;
-}
-
-.fade-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.fade-exit-active {
-  opacity: 0.01;
-  transform: scale(1.1);
-  transition: all 300ms;
 }

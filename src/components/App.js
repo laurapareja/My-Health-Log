@@ -59,8 +59,7 @@ class App extends React.Component {
     const monthOrdered = data.sort((a, b) => {
       return new Date(b.name) - new Date(a.name)
     });
-
-    const propertiesOrdered = data.map(month => {
+    const propertiesOrdered = monthOrdered.map(month => {
       return month.treatment.sort((a, b) => { return new Date(b.date) - new Date(a.date) })
     })
 
