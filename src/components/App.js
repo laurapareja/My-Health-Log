@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import TreatmentPage from "./TreatmentPage";
+import TreatmentPageList from "./TreatmentPageList";
 import Appointments from './Appointments';
 import MedicationCalculator from './MedicationCalculator/MedicationCalculator';
 import Navigator from './Navigator';
@@ -85,12 +86,23 @@ class App extends React.Component {
               path="/My-Health-Log/treatment"
               render={() => {
                 return <TreatmentPage
+                  titlePage="Treatment"
+                  classImage="page_image"
+                  image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
+              }}
+            />
+            <Route
+              exact
+              path="/My-Health-Log/treatmentList"
+              render={() => {
+                return <TreatmentPageList
                   flareTreatment={this.state.flareTreatment}
                   titlePage="Treatment"
                   classImage="page_image"
                   image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
               }}
             />
+
             <Route
               exact
               path="/My-Health-Log/appointments"

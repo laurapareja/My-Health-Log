@@ -1,0 +1,24 @@
+.navigator{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0px;
+    background-color:black;
+    height: 52px;
+    width: 100%;
+    padding: 0 40px;
+  
+    &_link{
+      font-size: 10px;
+      text-decoration: none;
+      color:white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .icon{
+    color:white;
+    font-size: 25px;
+  }

@@ -6,18 +6,6 @@
 
 }
 
-.medication_dose--container{
-  width:190px;
-  display: flex;
-
-  // justify-content: space-between;
-}
-.medication_dose--day{
-  padding:10px;
-}
-.mainBody{
-  width:100vw;
-}
 body{
   background-color:darkcyan;
   display: flex;
@@ -27,168 +15,16 @@ body{
   height: 100vh;
 }
 
-.main{
-  height: 100%;
-  width: 100%;
-  background-color:white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 70px;
 
-  &_title{
-    text-align:center;
-    padding:5px;
-    background-color: rgb(144, 194, 194);
-    color:rgb(73, 73, 73);
-    font-size: 15px;
-    width:100%;
-
-  }
-}
-.appointments{
-  height: 100vh;
-}
-.homeMain{
-  height: 100%;
-  width: 100%;
-  background-color:white;
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px
-
-  &_title{
-    text-align:center;
-    padding:10px;
-  }
-}
-.dateListItem{
-  // text-align: center;
-  font-size: 18px;
-  padding-bottom: 7px;
+.button{
+  height: 40px;
+  width: 320px;
+  font-size: 20px;
   font-weight: bold;
-  color:rgb(78, 146, 146);
-}
-.doseTime{
-  margin-right: 10px;
-  color:rgb(64, 98, 98);
-}
-.pill{
-  margin-right:10px;
-  height: 16px;
-  width:7px;
-  border: solid 1px black;
-
-}
-.pillName{
-  text-transform: capitalize;
-}
-.paracetamol{
-  background-color: rgb(43, 160, 160);
-  border: solid 1px rgb(43, 160, 160);
-}
-.ibuprofeno{
-  background-color: rgb(255, 217, 0);
-  border: solid 1px rgb(255, 217, 0);
-}
-
-.mainCalculator{
-  height: 95vh;
-  width: 100%;
-  background-color:white;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  margin-bottom: 20px;
-  &_content{
-    padding:30px;
-  }
-}
-.example__container{
-  padding:50px 90px;
-}
-.example__time--container{
-  display: flex;
-  padding: 5px 0;
-}
-.hour{
-  height: 20px;
-  width: 20px;
-  margin:0 10px;
-  border:solid 1px black;
-  border-radius: 20px;
-}
-.yellow{
-  background-color: rgb(248, 232, 0);
-}
-.blue{
-  background-color: rgb(5, 60, 161);
-}
-.purple{
-    background-color: rgb(95, 5, 95);
-}
-.red{
-  background-color:rgb(161, 0, 0);
-}
-.orange{
-  background-color: rgb(255, 115, 0);
-}
-.green{
-  background-color:rgb(22, 116, 22);
-}
-
-.navigator{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  bottom: 0px;
-  background-color:black;
-  height: 52px;
-  width: 100%;
-  padding: 0 40px;
-
-  &_link{
-    font-size: 10px;
-    text-decoration: none;
-    color:white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-.icon{
   color:white;
-  font-size: 25px;
-}
-.inputContainer{
-  padding-top:20px;
-}
-.inputContent{
-  padding-right: 10px;
-}
-.homepage_img{
-  border-radius: 10px;
-  width:100%;
-  height:600px;
-  margin-bottom: 50px;
+  background-color: rgb(255, 145, 0);
+  border: solid 1px rgb(255, 145, 0);
+  border-radius: 20px;
+  margin:10px;
 }
 
-.page_image{
-  width:120px;
-  padding:30px 0;
-}
-footer {
-  text-align: center;
-  background-color:white;
-  padding-top:10px;
-  width: 100%;
-  color:lightgray;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 12px;
-}
-.footer_link{
-  text-decoration: none;
-  font-weight: lighter;
-  color:darkgrey;
-}

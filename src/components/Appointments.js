@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "../stylesheets/Appointments.scss"
 
 const Appointments = (props) => {
     const { renderMonthName, classImage, image, titlePage } = props;

@@ -1,55 +1,23 @@
 import React from 'react';
-import Footer from './Footer';
-
-
-const renderMonthName = (flareTreatment) => {
-    return flareTreatment.map(month => {
-        const list = month.map((day, index) => {
-
-            const dayList = day.treatment.map((dose, index) => {
-                return (
-                    <div className="medication_dose--container" key={index}>
-                        <div className={`pill ${dose.pill}`} ></div>
-                        <h4 className="doseTime">{dose.time} </h4>
-                        <p className="pillName">{dose.pill}</p>
-                    </div>
-                )
-            })
-            const formatDate = (date) => {
-                var monthNames = [
-                    "January", "February", "March",
-                    "April", "May", "June", "July",
-                    "August", "September", "October",
-                    "November", "December"
-                ];
-
-                var day = date.getDate();
-                var monthIndex = date.getMonth();
-                var year = date.getFullYear();
-
-                return day + ' ' + monthNames[monthIndex] + ' ' + year;
-            }
-            const date = formatDate(new Date(day.date))
-            return <div key={index} className="medication_dose--day">
-                <p className="dateListItem"> {date}</p>
-                {dayList}
-            </div>
-        })
-        return list
-    })
-}
+import Button from './Button';
+import { Link } from "react-router-dom";
 
 
 
 const TreatmentPage = (props) => {
-    const { classImage, image, titlePage, flareTreatment } = props;
+    const { classImage, image, titlePage } = props;
 
     return (
         <div className="main">
-            <h2 className="main_title">{titlePage}</h2>
             <img src={image} alt="pill" className={classImage}></img>
-            <div>{renderMonthName(flareTreatment)}</div>
-            <Footer />
+            <h2 className="main_title">{titlePage}</h2>
+            <h3 className="main_subtitle">Here you can register and see your flare-ups treatment</h3>
+            <div className="treatmentPage_button--container">
+                <Link to="/My-Health-Log/treatmentList">
+                    <Button nameButton="TREATMENT LIST" classButton="treatmentPage_button" />
+                </Link>
+                <Button nameButton="REGISTER" classButton="treatmentPage_button" />
+            </div>
         </div >
     )
 }

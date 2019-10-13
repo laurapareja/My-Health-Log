@@ -6,7 +6,7 @@ import MedicationColorSelector from "./MedicationColorSelector";
 import MedicationInstruction from "./MedicationInstruction";
 import MedicationStartTiming from "./MedicationStartTiming";
 import ExampleGuideline from "./ExampleGuideline";
-import "../../stylesheets/App.scss"
+import "../../stylesheets/MedicationCalculator.scss"
 
 class App extends React.Component {
   constructor(props) {
