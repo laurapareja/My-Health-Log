@@ -16,7 +16,9 @@ const TreatmentPage = (props) => {
                 <Link to="/My-Health-Log/treatmentList">
                     <Button nameButton="TREATMENT LIST" classButton="treatmentPage_button" />
                 </Link>
-                <Button nameButton="REGISTER" classButton="treatmentPage_button" />
+                <Link to="/My-Health-Log/treatment/register">
+                    <Button nameButton="REGISTER" classButton="treatmentPage_button" />
+                </Link>
             </div>
         </div >
     )
