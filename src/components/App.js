@@ -20,9 +20,6 @@ class App extends React.Component {
       : localStorageData;
 
     this.saveData = this.saveData.bind(this);
-    // this.getFlareTreatmentInfo = this.getFlareTreatmentInfo.bind(this);
-    // this.includeDayTreatmentToData = this.includeDayTreatmentToData.bind(this);
-    // this.includeDataOrderedToState = this.includeDataOrderedToState.bind(this);
     this.actionColorSelector = this.actionColorSelector.bind(this);
     this.includeNewTreatment = this.includeNewTreatment.bind(this);
   }
@@ -46,54 +43,6 @@ class App extends React.Component {
     }
   }
 
-  // getFlareTreatmentInfo() {
-  //   fetch("https://laurapareja.github.io/My-Health-Log/services/info.json")
-  //     // fetch("http://localhost:3000/services/info.json")
-
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.includeDayTreatmentToData(data);
-  //       this.includeDataOrderedToState(data);
-  //     })
-  // }
-
-  // includeDayTreatmentToData(data) {
-  //   data[0].treatment.push(
-  //     {
-  //       "date": "2019-06-16",
-  //       "treatment": [
-  //         {
-  //           "time": "08:00",
-  //           "pill": "paracetamol"
-  //         },
-  //         {
-  //           "time": "12:45",
-  //           "pill": "ibuprofeno"
-  //         }, {
-  //           "time": "18:45",
-  //           "pill": "paracetamol"
-  //         }
-  //       ]
-  //     }
-  //   )
-  //   return data;
-  // }
-
-  // includeDataOrderedToState(data) {
-  //   const monthOrdered = data.sort((a, b) => {
-  //     return new Date(b.name) - new Date(a.name)
-  //   });
-  //   const propertiesOrdered = monthOrdered.map(month => {
-  //     return month.treatment.sort((a, b) => { return new Date(b.date) - new Date(a.date) })
-  //   })
-
-  //   return this.setState({
-  //     flareTreatment: propertiesOrdered,
-  //   },
-  //     //guardo en localstorage
-  //     this.saveData
-  //   )
-  // }
   actionColorSelector(color, namePill) {
     if (this.state.colorSelected !== color) {
       this.setState({
