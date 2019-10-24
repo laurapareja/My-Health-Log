@@ -6,6 +6,12 @@ footer {
   color:lightgray;
   font-family: 'Courier New', Courier, monospace;
   font-size: 12px;
+  @media all and(min-width:1200px) {
+    position: fixed;
+    bottom: 0;
+    padding-bottom:10px;
+
+  }
 }
 .footer_link{
   text-decoration: none;

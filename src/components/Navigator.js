@@ -10,6 +10,7 @@ const Navigator = () => {
             <Link className="navigator_link" to="/My-Health-Log/treatment"><i className="fas fa-pills icon" samesite="none"></i>Treatment</Link>
             <Link className="navigator_link" to="/My-Health-Log/appointments"><i className="fas fa-calendar-check icon" samesite="none"></i>Appointments</Link>
             <Link className="navigator_link" to="/My-Health-Log/calculator"><i className="fas fa-clock icon" samesite="none"></i>Timer</Link>
+            <Link className="navigator_link" to="/My-Health-Log/settings"><i className="fas fa-cog icon" samesite="none"></i>Settings</Link>
         </div>
     )
 }

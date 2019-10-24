@@ -1,4 +1,6 @@
 import React from 'react';
+import Footer from './Footer';
+
 import '../stylesheets/HomePage.scss'
 
 const HomePage = () => {

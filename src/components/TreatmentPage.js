@@ -3,12 +3,16 @@ import Button from './Button';
 import { Link } from "react-router-dom";
 
 
+const vowelsAndConsonants = (s) => {
+    //
+}
 
 const TreatmentPage = (props) => {
     const { classImage, image, titlePage } = props;
 
     return (
         <div className="main">
+            {vowelsAndConsonants("javascriptloops")}
             <img src={image} alt="pill" className={classImage}></img>
             <h2 className="main_title">{titlePage}</h2>
             <h3 className="main_subtitle">Here you can register and see your flare-ups treatment</h3>

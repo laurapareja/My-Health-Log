@@ -24,20 +24,29 @@ class TreatmentRegister extends React.Component {
         this.handleClassButton = this.handleClassButton.bind(this);
         this.renderErrorMessage = this.renderErrorMessage.bind(this);
         this.actionSaveButton = this.actionSaveButton.bind(this);
+        this.renderNewMedicationName = this.renderNewMedicationName.bind(this);
     }
 
 
     renderMedicationSelector(medicationsTreatment) {
-        return medicationsTreatment.map((medication, index) => {
-            return <option key={index} name={medication} value={medication}>{medication}</option>
-        })
+        if (medicationsTreatment !== "") {
+            return medicationsTreatment.map((medication, index) => {
+                return <option key={index} name={medication.name} value={medication.name}>{medication.name}</option>
+            })
+        }
+
     }
     handleNewMedication(event) {
         if (event.currentTarget.value === 'newMedication') {
             return this.setState({
-                newMedication: true
+                newMedication: true,
             })
         }
+    }
+    renderNewMedicationName(event) {
+        return this.setState({
+            medicationName: event.currentTarget.value,
+        })
     }
 
     regirterNewMedication() {
@@ -48,7 +57,7 @@ class TreatmentRegister extends React.Component {
                         <label htmlFor="medicationTreatment" className="treatmentLabel">Register new medication</label >
                         <div className="inputContainerMedication">
 
-                            <input type="text" id="medicationTreatment" className="inputTreatment"></input>
+                            <input type="text" id="medicationTreatment" className="inputTreatment" onChange={this.renderNewMedicationName}></input>
                             <i className="far fa-trash-alt iconInput iconInput_trash" onClick={this.handleDeleteNewMedication}></i>
                         </div>
 
@@ -58,9 +67,22 @@ class TreatmentRegister extends React.Component {
     }
     handleSaveMedication(event) {
         if (event.target.type === "date") {
-            this.setState({
-                date: event.target.value,
-            })
+            let today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd;
+
+            if (event.target.value <= today) {
+                this.setState({
+                    date: event.target.value,
+                })
+            } else {
+                alert('future dates are not available')
+                event.target.value = "";
+            }
+
         } else if (event.target.type === "time") {
             this.setState({
                 time: event.target.value,
@@ -75,7 +97,7 @@ class TreatmentRegister extends React.Component {
     }
 
     handleClassButton() {
-        if (this.state.date === "" || this.state.time === "" || this.state.medicationName === "") {
+        if (this.state.date === "" || this.state.date === undefined || this.state.time === "" || this.state.medicationName === "") {
             return "treatmentRegister_button--disable"
         } else {
             return "treatmentRegister_button--able"
@@ -105,9 +127,7 @@ class TreatmentRegister extends React.Component {
             props,
         } = this;
 
-        const { image, classImage, medicationsTreatment, includeNewTreatment } = props
-
-
+        const { image, classImage, medicationName, includeNewTreatment } = props
 
         return (
             <div className="main" >
@@ -134,7 +154,7 @@ class TreatmentRegister extends React.Component {
                             <i className="fas fa-tablets iconInput"></i>
                             <select name="selectMedication" id="selectMedication" className="inputTreatment" onChange={this.handleNewMedication} >
                                 <option name="" value=""></option>
-                                {this.renderMedicationSelector(medicationsTreatment)}
+                                {this.renderMedicationSelector(medicationName)}
                                 <option name="newMedication" value="newMedication">new medication</option>
                             </select>
                         </div>

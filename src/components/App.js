@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage';
+import Settings from './Settings';
 import TreatmentPage from "./TreatmentPage";
 import TreatmentPageList from "./TreatmentPageList";
 import TreatmentRegister from "./TreatmentRegister";
@@ -8,6 +9,7 @@ import AppointmentPage from './AppointmentPage';
 import AppointmentsList from "./AppointmentsList";
 import MedicationCalculator from './MedicationCalculator/MedicationCalculator';
 import Navigator from './Navigator';
+import Footer from './Footer';
 
 import "../stylesheets/App.scss"
 
@@ -16,7 +18,18 @@ class App extends React.Component {
     super(props);
     const localStorageData = this.getData();
     this.state = localStorageData === null
-      ? this._getInitialState()
+      ? {
+        flareTreatment: [],
+        colorSelected: '',
+        medicationRegistered: [
+          {
+            "name": "paracetamol",
+            "color": "blue"
+          }, {
+            "name": "ibuprofeno",
+            "color": "yellow"
+          }]
+      }
       : localStorageData;
 
     this.saveData = this.saveData.bind(this);
@@ -27,20 +40,11 @@ class App extends React.Component {
     this.getData();
     this.saveData();
   }
-  //obtengo los datos del localstorage
   getData() {
     return JSON.parse(localStorage.getItem("infoMyHealthRegister"));
   }
-  //guardo los datos en el localstorage
   saveData() {
-    localStorage.setItem("infoMyHeinfoMyHealthRegister", JSON.stringify(this.state));
-  }
-  _getInitialState() {
-    return {
-      flareTreatment: [],
-      colorSelected: '',
-      medicationName: ["paracetamol", "ibuprofeno"]
-    }
+    localStorage.setItem("infoMyHealthRegister", JSON.stringify(this.state));
   }
 
   actionColorSelector(color, namePill) {
@@ -64,11 +68,20 @@ class App extends React.Component {
       const time = newState.time;
       const medicationName = newState.medicationName;
 
-      if (this.state.medicationName.includes(medicationName) === false) {
-        const listMedication = [...this.state.medicationName]
-        listMedication.push(medicationName)
+      const listMedications = this.state.medicationRegistered.map(medication => {
+        return medication.name
+      })
+      if (listMedications.find(medication => {
+        return medication === medicationName
+      }) === undefined) {
+        const listMedication = [...this.state.medicationRegistered]
+        const object = { "name": medicationName, "color": "yellow" }
+
+
+
+        listMedication.push(object)
         return this.setState({
-          medicationName: listMedication
+          medicationRegistered: listMedication
         }, this.saveData
         )
       }
@@ -82,8 +95,8 @@ class App extends React.Component {
             "pill": medicationName
           }
         ]
-      }
-        ;
+      };
+
       const listUpdated = [...this.state.flareTreatment]
       listUpdated.push(newTreatment)
 
@@ -94,9 +107,8 @@ class App extends React.Component {
     }
   }
   render() {
-    console.log(this.state)
     return (
-      <div className="body">
+      <div className="body" >
         <BrowserRouter>
           <Route
             exact
@@ -106,6 +118,15 @@ class App extends React.Component {
             }}
           />
           <Switch>
+            <Route
+              exact
+              path="/My-Health-Log/settings"
+              render={() => {
+                return <Settings
+                  medicationRegistered={this.state.medicationRegistered}
+                />;
+              }}
+            />
             <Route
               exact
               path="/My-Health-Log/treatment"
@@ -124,8 +145,7 @@ class App extends React.Component {
                   flareTreatment={this.state.flareTreatment}
                   titlePage="Treatment"
                   classImage="page_image"
-                  colorSelected={this.state.colorSelected}
-                  medicationName={this.state.medicationName}
+                  medicationName={this.state.medicationRegistered}
                   image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
               }}
             />
@@ -137,7 +157,7 @@ class App extends React.Component {
                   titlePage="Treatment"
                   classImage="page_image"
                   includeNewTreatment={this.includeNewTreatment}
-                  medicationsTreatment={this.state.medicationName}
+                  medicationName={this.state.medicationRegistered}
                   image="https://laurapareja.github.io/My-Health-Log/images/pills.png" />;
                 ;
               }}
@@ -171,6 +191,7 @@ class App extends React.Component {
             />
           </Switch>
           <Navigator />
+          <Footer />
         </BrowserRouter>
       </div>
     );
