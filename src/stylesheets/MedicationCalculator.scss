@@ -1,17 +1,32 @@
+.headerCalculator{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .mainCalculator{
-  height: 95vh;
   width: 100%;
   background-color:white;
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
   margin-bottom: 20px;
+
+    @media all and(min-width:1200px) {
+      width: 800px;
+      padding-bottom: 40px;
+      margin-top:50px;
+      margin-left: 232px;
+    }
+
   &_content{
     padding:30px;
+    @media all and(min-width:1200px) {
+      width:300px;
+    }
   }
 }
 .example__container{
-  padding:50px 90px;
+  padding:50px 0;
 }
 .example__time--container{
   display: flex;
@@ -53,4 +68,11 @@
 }
 .inputContent{
   padding-right: 10px;
+}
+.calculator_picture{
+  width:250px;
+  padding:40px 0;
+  @media all and(min-width:1200px) {
+    width:150px;
+  }
 }

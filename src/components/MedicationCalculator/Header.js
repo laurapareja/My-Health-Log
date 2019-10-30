@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Header = () => {
+const Header = (props) => {
+    const image = props.image;
     return (
-        <header>
+        <header className="headerCalculator">
+            <img className="calculator_picture" src={image} ></img>
             <h2 className="main_title">Doses Calculator</h2>
         </header>
     )

@@ -4,7 +4,11 @@
   height:600px;
   margin-bottom: 50px;
   @media all and(min-width:1200px) {
-    margin-top: 50px;
-    width:400px;
+    display:none;
+      // margin-bottom: 0;
+      // position: fixed;
+      // width:400px;
+      // height: 500px;
+      // bottom:20px;
   }
 }

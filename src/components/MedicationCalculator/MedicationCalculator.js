@@ -109,6 +109,7 @@ class App extends React.Component {
 
 
   render() {
+    const image = this.props.image;
     const timesMedication = this.getHoursMedication()
     const color = this.state.colorSelected;
     const medicationName = this.state.medicationName;
@@ -116,7 +117,7 @@ class App extends React.Component {
 
     return (
       <div className="mainCalculator">
-        <Header />
+        <Header image={image} />
         <div className="mainCalculator_content">
           <MedicationName getInfoState={this.getInfoState} medicationName={this.state.medicationName} />
           <MedicationColorSelector getInfoState={this.getInfoState} colorSelected={this.state.colorSelected} />

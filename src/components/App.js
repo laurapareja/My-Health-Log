@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Header from './Header';
 import HomePage from './HomePage';
 import Settings from './Settings';
 import TreatmentPage from "./TreatmentPage";
@@ -109,6 +110,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="body" >
+        <Header />
         <BrowserRouter>
           <Route
             exact
@@ -186,7 +188,8 @@ class App extends React.Component {
               exact
               path="/My-Health-Log/calculator"
               render={() => {
-                return <MedicationCalculator actionColorSelector={this.actionColorSelector} />;
+                return <MedicationCalculator actionColorSelector={this.actionColorSelector}
+                  image="https://laurapareja.github.io/My-Health-Log/images/alarm.png" />;
               }}
             />
           </Switch>
