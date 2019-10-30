@@ -17,12 +17,16 @@
       margin-top:50px;
       margin-left: 232px;
     }
+  &_inputsContainer{
+    @media all and(min-width:1200px) {
+      width:200px;
+      margin-right: 100px;
+    }
+  }
 
   &_content{
     padding:30px;
-    @media all and(min-width:1200px) {
-      width:300px;
-    }
+
   }
 }
 .example__container{
@@ -75,4 +79,10 @@
   @media all and(min-width:1200px) {
     width:150px;
   }
+}
+.errorMedicationName{
+  color:red;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 20px;
 }

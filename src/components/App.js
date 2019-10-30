@@ -9,6 +9,7 @@ import TreatmentRegister from "./TreatmentRegister";
 import AppointmentPage from './AppointmentPage';
 import AppointmentsList from "./AppointmentsList";
 import MedicationCalculator from './MedicationCalculator/MedicationCalculator';
+import About from './About';
 import Navigator from './Navigator';
 import Footer from './Footer';
 
@@ -190,6 +191,14 @@ class App extends React.Component {
               render={() => {
                 return <MedicationCalculator actionColorSelector={this.actionColorSelector}
                   image="https://laurapareja.github.io/My-Health-Log/images/alarm.png" />;
+              }}
+            />
+            <Route
+              exact
+              path="/My-Health-Log/about"
+              render={() => {
+                return <About
+                  image="https://laurapareja.github.io/My-Health-Log/images/laurapareja.png" />;
               }}
             />
           </Switch>

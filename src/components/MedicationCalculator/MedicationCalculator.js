@@ -119,11 +119,14 @@ class App extends React.Component {
       <div className="mainCalculator">
         <Header image={image} />
         <div className="mainCalculator_content">
-          <MedicationName getInfoState={this.getInfoState} medicationName={this.state.medicationName} />
-          <MedicationColorSelector getInfoState={this.getInfoState} colorSelected={this.state.colorSelected} />
-          {/* <MedicationQuantitySelector /> */}
-          <MedicationStartTiming getInfoState={this.getInfoState} firstDose={this.state.firstDose} />
-          <MedicationInstruction getInfoState={this.getInfoState} medicationInstruction={this.state.medicationInstruction} />
+          <div className="mainCalculator_inputsContainer">
+            <MedicationName getInfoState={this.getInfoState} medicationName={this.state.medicationName} />
+            <MedicationColorSelector getInfoState={this.getInfoState} colorSelected={this.state.colorSelected} />
+            {/* <MedicationQuantitySelector /> */}
+            <MedicationStartTiming getInfoState={this.getInfoState} firstDose={this.state.firstDose} />
+            <MedicationInstruction getInfoState={this.getInfoState} medicationInstruction={this.state.medicationInstruction} />
+
+          </div>
 
           <ExampleGuideline
             info={timesMedication}
