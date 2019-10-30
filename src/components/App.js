@@ -110,7 +110,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="body" >
-        <Header />
+        <Header image="https://laurapareja.github.io/My-Health-Log/images/heart.png" />
         <BrowserRouter>
           <Route
             exact
