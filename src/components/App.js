@@ -109,6 +109,9 @@ class App extends React.Component {
     }
   }
   render() {
+    if (this.state === null) {
+      return <p>Loading</p>
+    }
     return (
       <div className="body" >
         <Header image="https://laurapareja.github.io/My-Health-Log/images/heart.png" />
