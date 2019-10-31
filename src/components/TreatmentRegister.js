@@ -128,7 +128,9 @@ class TreatmentRegister extends React.Component {
         } = this;
 
         const { image, classImage, medicationName, includeNewTreatment } = props
-
+        if (this.state === null) {
+            return <p>Loading</p>
+        }
         return (
             <div className="main" >
                 <img src={image} alt="pill" className={`treatmentPageListImp ${classImage}`}></img>

@@ -114,7 +114,9 @@ class App extends React.Component {
     const color = this.state.colorSelected;
     const medicationName = this.state.medicationName;
     this.props.actionColorSelector(color, medicationName);
-
+    if (this.state === null) {
+      return <p>Loading</p>
+    }
     return (
       <div className="mainCalculator">
         <Header image={image} />
