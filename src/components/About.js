@@ -13,7 +13,7 @@ The idea is to have an app where you can see all of the info related to your hea
 </p>
             <h2>About me</h2>
 
-            <img src={image} alt="laura picture" className="aboutPicture"></img>
+            <img src={image} alt="laura" className="aboutPicture"></img>
 
             <h3>Hi! I'm Laura Pareja</h3>
 

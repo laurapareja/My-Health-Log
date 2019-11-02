@@ -15,9 +15,9 @@
       top: 90px;
       left:10%;
       height: 79%;
-      width: 300px;
+      width: 250px;
       padding:40px 20px;
-      background-color:rgb(223, 219, 219);
+      
      
     }
   
@@ -33,7 +33,7 @@
         width:100%;
         padding:15px;
         font-size: 20px;
-        color:rgb(7, 70, 64);
+        color:rgb(15, 182, 165);
         text-transform: uppercase;
         font-family: 'Prompt', sans-serif;
       }
@@ -43,7 +43,7 @@
     color:white;
     font-size: 25px;
     @media all and(min-width:1200px) {
-      color:rgb(7, 70, 64);
+      color:rgb(15, 182, 165);
       padding-right: 10px;
     }
   }

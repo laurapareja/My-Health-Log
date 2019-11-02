@@ -4,23 +4,21 @@
   height:600px;
   margin-bottom: 50px;
   @media all and(min-width:1200px) {
-      margin-bottom: 0;
-      width:400px;
-      height: 460px;
-      bottom:20px;
+      margin-bottom: 0px;
+      height:470px;
+      width: 380px;
   }
 }
 
 .homeMain{
   @media all and(min-width:1200px) {
     background-color:white;
-  width: 800px;
-  padding-bottom: 45px;
-  margin-top:50px;
-  margin-left: 15%;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
+    width: 80%;
+    padding-bottom: 40px;
+    margin-top:50px;
+    padding-left:250px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
-  
 }

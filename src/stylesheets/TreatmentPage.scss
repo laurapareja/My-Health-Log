@@ -2,7 +2,7 @@
   width:250px;
   padding:40px 0;
   @media all and(min-width:1200px) {
-    padding:20px 0;
+    padding:40px 0;
     width:150px;
   }
 }
@@ -20,6 +20,7 @@
 }
 .pillContainer{
   display: flex;
+  align-items: center;
 }
 .medication_dose--container{
   width:180px;
@@ -30,6 +31,8 @@
  
   .mainBody{
     width:100vw;
+    
+    // height:100%;
     margin-bottom: 20px;
   }
 .buttonAppointment{
@@ -44,11 +47,11 @@
     padding-bottom: 70px;
     @media all and(min-width:1200px) {
       background-color:white;
-      width: 800px;
+      width: 80%;
       height: 100%;
       padding-bottom: 40px;
       margin-top:50px;
-      margin-left: 15%;
+      padding-left:250px;
     }
 
   

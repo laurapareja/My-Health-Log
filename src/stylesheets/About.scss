@@ -6,15 +6,19 @@
   }
 }
 .mainAbout{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
   padding: 40px;
   background-color:white;
   @media all and(min-width:1200px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 800px; 
-    margin-top:50px;
-    margin-left: 15%;
+    
+    background-color:white;
+      width: 80%;
+      height: 100%;
+      padding-bottom: 40px;
+      margin-top:50px;
+      padding-left:290px;
   }
 
 }

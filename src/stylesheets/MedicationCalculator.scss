@@ -3,6 +3,10 @@
   flex-direction: column;
   align-items: center;
 }
+.medicationName{
+  display: flex;
+  flex-direction: column;
+}
 .mainCalculator{
   width: 100%;
   background-color:white;
@@ -12,15 +16,21 @@
   margin-bottom: 20px;
 
     @media all and(min-width:1200px) {
-      width: 800px;
+      background-color:white;
+      width: 80%;
+      height: 100%;
       padding-bottom: 40px;
       margin-top:50px;
-      margin-left: 15%;
+      padding-left:250px;
+      margin-bottom: 0px;
+
     }
   &_inputsContainer{
     @media all and(min-width:1200px) {
-      width:200px;
-      margin-right: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width:100%;
     }
   }
 
@@ -34,6 +44,8 @@
 }
 .example__time--container{
   display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px 0;
 }
 .hour{
