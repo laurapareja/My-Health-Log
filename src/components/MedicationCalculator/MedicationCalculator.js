@@ -2,25 +2,22 @@ import React from "react";
 import Header from "./Header";
 import MedicationName from "./MedicationName";
 import MedicationColorSelector from "./MedicationColorSelector";
-import MedicationQuantitySelector from "./MedicationQuantitySelector";
+// import MedicationQuantitySelector from "./MedicationQuantitySelector";
 import MedicationInstruction from "./MedicationInstruction";
 import MedicationStartTiming from "./MedicationStartTiming";
-// import PreviewExample from "./PreviewExample";
 import ExampleGuideline from "./ExampleGuideline";
-import Footer from "../Footer";
-import "../stylesheets/App.scss"
+import "../../stylesheets/MedicationCalculator.scss"
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      dayHours: [],
-      dayHoursMedication: [],
-      medicationName: "",
-      firstDose: '',
-      medicationInstruction: '',
-      colorSelected: ""
-    }
+    const localStorageData = this.getData();
+    this.state = localStorageData === null
+      ? this._getInitialState()
+      : localStorageData;
+
+    this.saveData = this.saveData.bind(this);
+
     this.getDays = this.getDays.bind(this);
     this.getHoursMedication = this.getHoursMedication.bind(this);
     this.getInfoState = this.getInfoState.bind(this);
@@ -28,6 +25,28 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.getDays();
+    this.saveData();
+
+  }
+  //obtengo los datos del localstorage
+  getData() {
+    return JSON.parse(localStorage.getItem("infoMedication"));
+  }
+  //guardo los datos en el localstorage
+  saveData() {
+    localStorage.setItem("infoMedication", JSON.stringify(this.state));
+  }
+
+
+  _getInitialState() {
+    return {
+      dayHours: [],
+      dayHoursMedication: [],
+      medicationName: "",
+      firstDose: '',
+      medicationInstruction: '',
+      colorSelected: ""
+    }
   }
 
   getDays() {
@@ -37,13 +56,14 @@ class App extends React.Component {
     }
     return this.setState({
       dayHours: dayHoursList
-    })
+    },
+      //guardo en localstorage
+      this.saveData
+    )
   }
   getHoursMedication() {
 
     if (this.state.firstDose !== "" && this.state.medicationInstruction !== "") {
-      console.log('sí tengo datos')
-
       const firstDose = parseInt(this.state.firstDose);
       const medicationInstruction = parseInt(this.state.medicationInstruction);
       const doses = 24 / medicationInstruction;
@@ -81,33 +101,35 @@ class App extends React.Component {
   getInfoState(event, infoState) {
     this.setState({
       [infoState]: event.currentTarget.value
-    })
+    },
+      //guardo en localstorage
+      this.saveData
+    )
   }
 
 
   render() {
     const timesMedication = this.getHoursMedication()
+    const color = this.state.colorSelected;
+    const medicationName = this.state.medicationName;
+    this.props.actionColorSelector(color, medicationName);
+
     return (
-      <div>
-        <div className="medicationCard">
-          <Header />
-          <MedicationName getInfoState={this.getInfoState} />
-          <MedicationColorSelector getInfoState={this.getInfoState} />
-          <MedicationQuantitySelector />
-          <MedicationInstruction getInfoState={this.getInfoState} />
-          <MedicationStartTiming getInfoState={this.getInfoState} />
-          {/* <PreviewExample
-          color={this.state.colorSelected}
-          dayHours={this.state.dayHours}
-          medicationName={this.state.medicationName}
-          firstDose={this.state.firstDose} /> */}
+      <div className="mainCalculator">
+        <Header />
+        <div className="mainCalculator_content">
+          <MedicationName getInfoState={this.getInfoState} medicationName={this.state.medicationName} />
+          <MedicationColorSelector getInfoState={this.getInfoState} colorSelected={this.state.colorSelected} />
+          {/* <MedicationQuantitySelector /> */}
+          <MedicationStartTiming getInfoState={this.getInfoState} firstDose={this.state.firstDose} />
+          <MedicationInstruction getInfoState={this.getInfoState} medicationInstruction={this.state.medicationInstruction} />
+
           <ExampleGuideline
             info={timesMedication}
             color={this.state.colorSelected}
             medicationName={this.state.medicationName}
           />
         </div>
-        <Footer />
       </div>
     );
   }

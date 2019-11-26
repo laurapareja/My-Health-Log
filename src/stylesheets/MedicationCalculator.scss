@@ -1,0 +1,56 @@
+.mainCalculator{
+  height: 95vh;
+  width: 100%;
+  background-color:white;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-bottom: 20px;
+  &_content{
+    padding:30px;
+  }
+}
+.example__container{
+  padding:50px 90px;
+}
+.example__time--container{
+  display: flex;
+  padding: 5px 0;
+}
+.hour{
+  height: 20px;
+  width: 20px;
+  margin:0 10px;
+  border:solid 1px black;
+  border-radius: 20px;
+}
+.colorselector{
+  width: 40px;
+}
+
+
+.yellow{
+  background-color: rgb(248, 232, 0);
+}
+.blue{
+  background-color: rgb(5, 60, 161);
+}
+.purple{
+    background-color: rgb(95, 5, 95);
+}
+.red{
+  background-color:rgb(161, 0, 0);
+}
+.orange{
+  background-color: rgb(255, 115, 0);
+}
+.green{
+  background-color:rgb(22, 116, 22);
+}
+
+.inputContainer{
+  padding-top:20px;
+}
+.inputContent{
+  padding-right: 10px;
+}
